@@ -44,5 +44,14 @@ export const useCategories = () => {
     }
   }
 
-  return { getAllCategories, getOneCategoryById, editCategory, addCategory };
+  async function deleteCategory(id: string) {
+    try {
+      await axios.delete(str + "/" + id);
+      
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  return { getAllCategories, getOneCategoryById, editCategory, addCategory, deleteCategory };
 }

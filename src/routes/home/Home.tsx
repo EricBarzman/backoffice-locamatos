@@ -1,7 +1,7 @@
 
 function Home() {
   return (
-    <div>Home</div>
+    <div className="flex justify-between items-center mx-auto">Accueil</div>
   )
 }
 

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import Formulaire from '../../components/page/formulaire';
+import Formulaire from '../../components/category/formulaire';
 
 function CategoryCreateOrEdit() {
 

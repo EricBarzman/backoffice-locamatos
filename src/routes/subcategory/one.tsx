@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react"
-import TableOne from "../../components/page/tableOne"
-import { CategoriesDto } from "../../types/categories.type"
-import { useCategories } from "../../hooks/useCategories";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+
+import { SubCategoriesDto } from "../../types/categories.type"
+import { useSubCategories } from "../../hooks/useSubCategories";
+
+import TableOne from "../../components/subcategory/tableOne"
+
 
 function SubCategoryPage() {
 
-  const [cat, setCat] = useState<CategoriesDto>();
-  const { getOneCategoryById } = useCategories()
+  const [cat, setCat] = useState<SubCategoriesDto>();
+  const { getOneSubCategoryById } = useSubCategories();
+  
   const { id } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
-    getOneCategoryById(id!).then(data => setCat(data));
-  }, [])
+    getOneSubCategoryById(id!).then(data => setCat(data));
+  }, [location])
 
   if (!cat) return <h2>Loading</h2>
 

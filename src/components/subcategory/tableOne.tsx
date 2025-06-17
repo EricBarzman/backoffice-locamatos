@@ -1,14 +1,27 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { CategoriesDto } from "../../types/categories.type"
+import { useSubCategories } from "../../hooks/useSubCategories";
 
 function TableOne({ category }: { category: CategoriesDto }) {
 
   const keys = Object.keys(category);
 
+  const { deleteSubCategory } = useSubCategories();
+  const navigate = useNavigate();
+
+  async function handleDelete() {
+    // eslint-disable-next-line no-restricted-globals
+    const answer = confirm("Voulez-vous vraiment supprimer cette sous-catégorie ?");
+    if (!answer) return
+
+    await deleteSubCategory(category._id);
+    navigate("/subcategory");
+  }
+
   return (
     <aside className='py-6 px-20 border-l w-1/3'>
       <h3 className='font-bold text-xl'>{category.nom}</h3>
-      <div className='py-6 mb-4'>
+      <div className='py-6 mb-4 flex flex-col'>
         <table className="border-collapse text-left">
           <thead>
             <tr>
@@ -27,10 +40,16 @@ function TableOne({ category }: { category: CategoriesDto }) {
             </tr>
           </tbody>
         </table>
+        <Link className="p-3 mt-6 text-center bg-teal-300 rounded-lg hover:bg-teal-400" to="/subcategory">
+          Retour
+        </Link>
+        <button
+          className="p-3 mt-8 bg-red-700 rounded-lg text-white hover:bg-red-800"
+          onClick={handleDelete}
+        >
+          Supprimer
+        </button>
       </div>
-      <Link className="p-3 bg-teal-300 rounded-lg hover:bg-teal-400" to="/category">
-        Retour
-      </Link>
     </aside>
   )
 }

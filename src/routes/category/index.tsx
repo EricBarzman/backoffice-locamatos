@@ -3,18 +3,19 @@ import { useCategories } from '../../hooks/useCategories'
 
 import { CategoriesDto } from '../../types/categories.type'
 
-import TableMany from '../../components/page/tableMany'
-import { Link } from 'react-router-dom';
+import TableMany from '../../components/category/tableMany'
+import { Link, useLocation } from 'react-router-dom';
 
 
 function CategoriesPage() {
 
   const { getAllCategories } = useCategories();
   const [cats, setCats] = useState<CategoriesDto[]>([]);
+  const location = useLocation();
 
   useEffect(() => {
     getAllCategories().then(data => setCats(data!));
-  }, [])
+  }, [location])
 
   if (cats.length === 0) return <h2>Loading</h2>
 
