@@ -11,6 +11,10 @@ import SubCategoryPage from './routes/subcategory/one';
 import SubCategoriesPage from './routes/subcategory/index';
 import SubCategoryCreateOrEdit from './routes/subcategory/createOrEdit';
 
+import ProductsList from './routes/product';
+import ProductPage from './routes/product/oneProduct';
+import ProductCreateOrEdit from './routes/product/createOrEdit';
+
 
 function App() {
   return (
@@ -20,9 +24,28 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/product" element={<Home />} />
             <Route path="/user" element={<Home />} />
-            
+
+            <Route path="/product" element={<ProductsList />} />
+            <Route path="/product/add" element={
+              <>
+                <ProductsList />
+                <ProductCreateOrEdit />
+              </>
+            } />
+            <Route path="/product/:id" element={
+              <>
+                <ProductsList />
+                <ProductPage />
+              </>
+            } />
+            <Route path="/product/:id/edit" element={
+              <>
+                <ProductsList />
+                <ProductCreateOrEdit />
+              </>
+            } />
+
             <Route path="/category" element={<CategoriesPage />} />
             <Route path="/category/add" element={
               <>
@@ -64,6 +87,29 @@ function App() {
             } />
 
             <Route />
+
+            <Route path="/user" element={<SubCategoriesPage />} />
+            <Route path="/user/add" element={
+              <>
+                <SubCategoriesPage />
+                <SubCategoryCreateOrEdit />
+              </>
+            } />
+            <Route path="/user/:id" element={
+              <>
+                <SubCategoriesPage />
+                <SubCategoryPage />
+              </>
+            } />
+            <Route path="/user/:id/edit" element={
+              <>
+                <SubCategoriesPage />
+                <SubCategoryCreateOrEdit />
+              </>
+            } />
+
+            <Route />
+
           </Routes>
         </div>
       </BrowserRouter>

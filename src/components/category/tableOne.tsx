@@ -12,7 +12,7 @@ function TableOne({ category }: { category: CategoriesDto }) {
     // eslint-disable-next-line no-restricted-globals
     if (!confirm("Voulez-vous vraiment supprimer cette catégorie ?")) return;
 
-    await deleteCategory(category._id);
+    await deleteCategory(category._id!);
     navigate("/category");
   }
 
@@ -38,11 +38,11 @@ function TableOne({ category }: { category: CategoriesDto }) {
             </tr>
           </tbody>
         </table>
-        <Link className="p-3 mt-6 bg-teal-300 rounded-lg hover:bg-teal-400" to="/category">
+        <Link className="p-3 mt-6 text-white text-center bg-teal-300 rounded-lg hover:bg-teal-400" to="/category">
           Retour
         </Link>
         <button
-          className="p-3 mt-8 bg-red-700 rounded-lg text-white hover:bg-red-800"
+          className="p-3 mt-8 bg-red-700 rounded-lg text-center text-white hover:bg-red-800"
           onClick={handleDelete}
         >
           Supprimer

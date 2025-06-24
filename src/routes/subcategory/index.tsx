@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSubCategories } from '../../hooks/useSubCategories'
 
-import { CategoriesDto } from '../../types/categories.type'
+import { SubCategoriesDto } from '../../types/categories.type'
 
 import TableMany from '../../components/subcategory/tableMany'
 import { Link, useLocation } from 'react-router-dom';
@@ -10,16 +10,12 @@ import { Link, useLocation } from 'react-router-dom';
 function SubCategoriesPage() {
 
   const { getAllSubCategories } = useSubCategories();
-  const [cats, setCats] = useState<CategoriesDto[]>([]);
+  const [cats, setCats] = useState<SubCategoriesDto[]>([]);
   const location = useLocation();
 
   useEffect(() => {
     getAllSubCategories().then(data => setCats(data!));
   }, [location])
-
-  console.log(cats);
-
-  if (cats.length === 0) return <h2>Loading</h2>
 
   return (
     <main className='py-6 px-20 w-2/5'>

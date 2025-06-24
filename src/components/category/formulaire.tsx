@@ -5,7 +5,6 @@ import { useCategories } from "../../hooks/useCategories";
 
 function Formulaire({ id }: { id: undefined | string }) {
 
-  // const keys = Object.keys(category);
   const navigate = useNavigate();
   const { editCategory, getOneCategoryById, addCategory } = useCategories();
 

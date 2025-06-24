@@ -22,7 +22,7 @@ function Header() {
         <Link className={btnClassnames} to="/product">
           Produits
         </Link>
-        <Link className={btnClassnames} to="/product">
+        <Link className={btnClassnames} to="/user">
           Utilisateurs
         </Link>
       </nav>

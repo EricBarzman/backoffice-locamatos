@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
-import { SubCategoriesDto } from "../../types/categories.type"
 
-function TableMany({ subcategories }: { subcategories: SubCategoriesDto[] }) {
+function TableMany({ type, types }: { type: string, types: any[] }) {
+
+  let keys = Object.keys(types[0]);
 
   return (
     <div className='py-6'>
@@ -9,19 +10,19 @@ function TableMany({ subcategories }: { subcategories: SubCategoriesDto[] }) {
         <thead>
           <tr>
             <th className="border border-gray-500 p-3">Index</th>
-            <th className="border capitalize border-gray-500 p-3">Nom</th>
-            <th className="border capitalize border-gray-500 p-3">Slug</th>
+            {keys.map(key => <th key={key} className="border capitalize border-gray-500 p-3">{key}</th>)}
             <th className="border border-gray-500 p-3">Action</th>
           </tr>
         </thead>
         <tbody>
-          {subcategories.map((cat, index) => (
-            <tr key={cat._id}>
+          {types.map((t, index) => (
+            <tr key={t._id}>
               <td className="border border-gray-500 p-3">{index + 1}</td>
-              <td className="border border-gray-500 p-3">{cat.nom}</td>
-              <td className="border border-gray-500 p-3">{cat.slug}</td>
+              {keys.map((key, idx) => (
+                <td key={idx} className="border border-gray-500 p-3">{`${Object.values(t)[idx]}`}</td>
+              ))}
               <td className="border border-gray-500 p-3">
-                <Link to={'/subcategory/' + cat._id}>See</Link>
+                <Link to={`/${type}/` + t._id}>Voir</Link>
               </td>
             </tr>
           ))}

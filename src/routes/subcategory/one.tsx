@@ -9,20 +9,20 @@ import TableOne from "../../components/subcategory/tableOne"
 
 function SubCategoryPage() {
 
-  const [cat, setCat] = useState<SubCategoriesDto>();
+  const [subcat, setSubcat] = useState<SubCategoriesDto>();
   const { getOneSubCategoryById } = useSubCategories();
   
   const { id } = useParams();
   const location = useLocation();
 
   useEffect(() => {
-    getOneSubCategoryById(id!).then(data => setCat(data));
+    getOneSubCategoryById(id!).then(data => setSubcat(data));
   }, [location])
 
-  if (!cat) return <h2>Loading</h2>
+  if (!subcat) return <h2>Loading</h2>
 
   return (
-    <TableOne category={cat} />
+    <TableOne subcategory={subcat} />
   )
 }
 
