@@ -14,6 +14,9 @@ import SubCategoryCreateOrEdit from './routes/subcategory/createOrEdit';
 import ProductsList from './routes/product';
 import ProductPage from './routes/product/oneProduct';
 import ProductCreateOrEdit from './routes/product/createOrEdit';
+import UsersList from './routes/user';
+import UserCreateOrEdit from './routes/user/createOrEdit';
+import UserPage from './routes/user/oneProduct';
 
 
 function App() {
@@ -24,7 +27,26 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/user" element={<Home />} />
+            
+            <Route path="/user" element={<UsersList />} />
+            <Route path="/user/add" element={
+              <>
+                <UsersList />
+                <UserCreateOrEdit />
+              </>
+            } />
+            <Route path="/user/:id" element={
+              <>
+                <UsersList />
+                <UserPage />
+              </>
+            } />
+            <Route path="/user/:id/edit" element={
+              <>
+                <UsersList />
+                <UserCreateOrEdit />
+              </>
+            } />
 
             <Route path="/product" element={<ProductsList />} />
             <Route path="/product/add" element={
